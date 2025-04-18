@@ -2,5 +2,5 @@
 
 public interface IRepository<T>
 {
-    IEnumerable<T> GetAll();
+    IEnumerable<T> GetAll(int? PageSize, int PageNumber);
 }
