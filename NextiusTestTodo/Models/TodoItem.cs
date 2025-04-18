@@ -1,4 +1,4 @@
-﻿namespace NextiusTestTodo.Models;
+﻿namespace NexiusTestTodo.Models;
 
 public record TodoItem
 {

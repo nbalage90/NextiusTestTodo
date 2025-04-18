@@ -1,4 +1,4 @@
-﻿namespace NextiusTestTodo.Services.GetAllTodoItems;
+﻿namespace NexiusTestTodo.Services.GetAllTodoItems;
 
 public record GetAllTodoItemsQuery(int? PageSize = 25, int? PageNumber = 1) : IRequest<GetAllTodoItemsCommand>;
 public record GetAllTodoItemsCommand(IEnumerable<TodoItem> TodoItems);
