@@ -2,5 +2,6 @@
 
 public interface IRepository<T>
 {
-    IEnumerable<T> GetAll(int? PageSize, int PageNumber);
+    Task<IEnumerable<T>> GetAllAsync(int? PageSize, int PageNumber);
+    Task<Guid> CreateAsync(T entity);
 }
