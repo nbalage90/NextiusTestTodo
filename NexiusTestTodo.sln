@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexiusTestTodo", "NextiusTestTodo\NexiusTestTodo.csproj", "{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.API", "NextiusTestTodo\NexiusTestTodo.API.csproj", "{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.Data", "NexiusTestTodo.Data\NexiusTestTodo.Data.csproj", "{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexiusTestTodo.Domain", "NexiusTestTodo.Domain\NexiusTestTodo.Domain.csproj", "{DCD0985A-FB7F-4E33-942D-CA10283DA89A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCD0985A-FB7F-4E33-942D-CA10283DA89A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCD0985A-FB7F-4E33-942D-CA10283DA89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCD0985A-FB7F-4E33-942D-CA10283DA89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCD0985A-FB7F-4E33-942D-CA10283DA89A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

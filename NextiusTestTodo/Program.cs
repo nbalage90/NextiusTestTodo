@@ -1,3 +1,7 @@
+using NexiusTestTodo.Data.Interfaces;
+using NexiusTestTodo.Data.Repositories;
+using NexiusTestTodo.Domain;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +14,8 @@ builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssembly(assembly);
 });
+
+builder.Services.AddScoped<IRepository<Todo>, FakeRepository>();
 
 builder.Services.AddCarter();
 

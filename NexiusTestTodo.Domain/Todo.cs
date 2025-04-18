@@ -1,6 +1,6 @@
-﻿namespace NexiusTestTodo.API.Models;
+﻿namespace NexiusTestTodo.Domain;
 
-public record TodoItem
+public class Todo
 {
     public required string Title { get; set; }
     public required string Description { get; set; }
