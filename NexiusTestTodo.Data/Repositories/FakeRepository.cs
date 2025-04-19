@@ -3,7 +3,7 @@ using NexiusTestTodo.Domain;
 
 namespace NexiusTestTodo.Data.Repositories;
 
-public class FakeRepository : IRepository<Todo>
+public class FakeRepository : ITodoItemRepository
 {
     ICollection<Todo> todos = [
             new() { Id = Guid.NewGuid(), Title = "Test1", Description = "Test description", Status = false },
@@ -36,13 +36,13 @@ public class FakeRepository : IRepository<Todo>
             new() { Id = Guid.NewGuid(), Title = "Test29", Description = "Test description", Status = false },
         ];
 
-    public async Task<IEnumerable<Todo>> GetAllAsync(int? PageSize, int PageNumber)
+    public async Task<IEnumerable<Todo>> GetAllAsync(CancellationToken cancellationToken, int? PageSize, int? PageNumber)
     {
         IEnumerable<Todo> retVal;
 
-        if (PageSize is not null)
+        if (PageSize is not null && PageNumber is not null)
         {
-            retVal = todos.Skip((PageNumber - 1) * PageSize.Value).Take(PageSize.Value);
+            retVal = todos.Skip((PageNumber.Value - 1) * PageSize.Value).Take(PageSize.Value);
         }
         else
         {
@@ -52,10 +52,31 @@ public class FakeRepository : IRepository<Todo>
         return retVal;
     }
 
-    public async Task<Guid> CreateAsync(Todo entity)
+    public async Task<Guid> CreateAsync(Todo entity, CancellationToken cancellationToken)
     {
         entity.Id = Guid.NewGuid();
         todos.Add(entity);
         return entity.Id;
+    }
+
+    public async Task<Guid> SetStatusAsync(Guid id, bool status, CancellationToken cancellationToken)
+    {
+        var todoItem = todos.SingleOrDefault(item => item.Id == id);
+        if (todoItem is null)
+        {
+            throw new ArgumentException();
+        }
+
+        todoItem.Status = status;
+
+        return id;
+    }
+
+    public async Task<Guid> ModifyItemAsync(Guid id, string title, string description, CancellationToken cancellationToken)
+    {
+        var item = todos.Single(todo => todo.Id == id);
+        item.Title = title is not null ? title : item.Title;
+        item.Description = description is not null ? description : item.Description;
+        return id;
     }
 }

@@ -4,3 +4,5 @@ Repositories
 CosmosDB
 Paging
 Filtering
+
+Mappa neveket ellenõrizni, hogy egyeznek-e a solution/projekt nevekkel

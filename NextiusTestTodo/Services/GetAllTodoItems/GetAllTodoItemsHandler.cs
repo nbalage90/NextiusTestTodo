@@ -5,11 +5,12 @@ public record GetAllTodoItemsResult(IEnumerable<TodoItem> TodoItems);
 
 // TODO: PageSize, PageNumber validation (max 25)
 
-public class GetAllTodoItemsHandler(IRepository<Todo> repository) : IRequestHandler<GetAllTodoItemsQuery, GetAllTodoItemsResult>
+public class GetAllTodoItemsHandler(ITodoItemRepository repository) : IRequestHandler<GetAllTodoItemsQuery, GetAllTodoItemsResult>
 {
     public async Task<GetAllTodoItemsResult> Handle(GetAllTodoItemsQuery request, CancellationToken cancellationToken)
     {
-        var todoItems = repository.GetAllAsync(request.PageSize, request.PageNumber).Adapt<IEnumerable<TodoItem>>();
+        var todoItemEntities = await repository.GetAllAsync(cancellationToken, request.PageSize, request.PageNumber);
+        var todoItems = todoItemEntities.Adapt<IEnumerable<TodoItem>>();
 
         var command = new GetAllTodoItemsResult(todoItems);
 

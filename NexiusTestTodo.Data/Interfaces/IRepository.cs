@@ -1,7 +1,11 @@
-﻿namespace NexiusTestTodo.Data.Interfaces;
+﻿using NexiusTestTodo.Domain;
 
-public interface IRepository<T>
+namespace NexiusTestTodo.Data.Interfaces;
+
+public interface ITodoItemRepository
 {
-    Task<IEnumerable<T>> GetAllAsync(int? PageSize, int PageNumber);
-    Task<Guid> CreateAsync(T entity);
+    Task<IEnumerable<Todo>> GetAllAsync(CancellationToken cancellationToken, int? PageSize = null, int? PageNumber = null);
+    Task<Guid> CreateAsync(Todo entity, CancellationToken cancellationToken);
+    Task<Guid> SetStatusAsync(Guid id, bool status, CancellationToken cancellationToken);
+    Task<Guid> ModifyItemAsync(Guid id, string title, string description, CancellationToken cancellationToken);
 }

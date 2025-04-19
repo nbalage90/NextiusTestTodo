@@ -3,7 +3,7 @@
 public record CreateTodoItemCommand(string Title, string Description, bool Status) : IRequest<CreateTodoItemResult>;
 public record CreateTodoItemResult(Guid Id);
 
-public class CreateTodoItemHandler(IRepository<Todo> repository) : IRequestHandler<CreateTodoItemCommand, CreateTodoItemResult>
+public class CreateTodoItemHandler(ITodoItemRepository repository) : IRequestHandler<CreateTodoItemCommand, CreateTodoItemResult>
 {
     public async Task<CreateTodoItemResult> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
     {
@@ -16,7 +16,7 @@ public class CreateTodoItemHandler(IRepository<Todo> repository) : IRequestHandl
 
         var newTodoItemEntity = newTodoItemDto.Adapt<Todo>();
 
-        var result = await repository.CreateAsync(newTodoItemEntity);
+        var result = await repository.CreateAsync(newTodoItemEntity, cancellationToken);
 
         return new CreateTodoItemResult(result);
     }

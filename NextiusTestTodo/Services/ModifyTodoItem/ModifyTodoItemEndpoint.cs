@@ -1,0 +1,19 @@
+﻿namespace NexiusTestTodo.API.Services.ModifyTodoItem;
+
+public record ModifyTodoItemRequest(string Title, string Description, bool Status);
+public record ModifyTodoItemResponse(Guid Id);
+
+public class ModifyTodoItemEndpoint : ICarterModule
+{
+    public void AddRoutes(IEndpointRouteBuilder app)
+    {
+        app.MapPatch("todoItems/{id}", async (Guid id, ModifyTodoItemRequest request, ISender sender) =>
+        {
+            var command = new ModifyTodoItemCommand(id, request.Title, request.Description);
+
+            var result = await sender.Send(command);
+
+            return Results.Ok(result);
+        });
+    }
+}

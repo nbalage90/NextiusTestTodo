@@ -15,7 +15,8 @@ builder.Services.AddMediatR(config =>
     config.RegisterServicesFromAssembly(assembly);
 });
 
-builder.Services.AddScoped<IRepository<Todo>, FakeRepository>();
+//builder.Services.AddScoped<ITodoItemRepository, FakeRepository>();
+builder.Services.AddSingleton<ITodoItemRepository, FakeRepository>(); // NOTE: just for testing purposes
 
 builder.Services.AddCarter();
 
