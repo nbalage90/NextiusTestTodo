@@ -1,4 +1,4 @@
-﻿namespace NexiusTestTodo.API.Services.CreateTodoItem;
+﻿namespace NexiusTestTodo.API.TodoItems.CreateTodoItem;
 
 public record CreateTodoItemRequest(string Title, string Description, bool Status);
 public record CreateTodoItemResponse(Guid Id);

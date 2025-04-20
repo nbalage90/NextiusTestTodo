@@ -1,9 +1,9 @@
 ﻿using Moq;
-using NexiusTestTodo.API.Services.CreateTodoItem;
-using NexiusTestTodo.Data.Interfaces;
+using NexiusTestTodo.API.TodoItems.CreateTodoItem;
+using NexiusTestTodo.Repository.Interfaces;
 using NexiusTestTodo.Domain;
 
-namespace NexiusTestTodo.Data.UnitTests;
+namespace NexiusTestTodo.API.UnitTests;
 
 public class CreateTodoItemHandlerTests
 {

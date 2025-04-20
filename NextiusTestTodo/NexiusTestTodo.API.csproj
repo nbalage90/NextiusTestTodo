@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NexiusTestTodo.Data\NexiusTestTodo.Data.csproj" />
+    <ProjectReference Include="..\NexiusTestTodo.Data\NexiusTestTodo.Repository.csproj" />
   </ItemGroup>
 
 </Project>

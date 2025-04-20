@@ -1,5 +1,4 @@
-﻿
-namespace NexiusTestTodo.API.Services.DeleteTodoItem;
+﻿namespace NexiusTestTodo.API.TodoItems.DeleteTodoItem;
 
 public record DeleteTodoItemCommand(Guid Id) : IRequest<DeleteTodoItemResult>;
 public record DeleteTodoItemResult(bool IsSuccess);

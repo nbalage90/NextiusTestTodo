@@ -1,4 +1,4 @@
-﻿namespace NexiusTestTodo.API.Services.SetTodoItemStatus;
+﻿namespace NexiusTestTodo.API.TodoItems.SetTodoItemStatus;
 
 public record SetTodoItemStatusRequest(Guid Id, bool Status);
 public record SetTodoItemStatusResponse(Guid Id);

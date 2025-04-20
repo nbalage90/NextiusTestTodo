@@ -1,4 +1,4 @@
-﻿namespace NexiusTestTodo.API.Services.ModifyTodoItem;
+﻿namespace NexiusTestTodo.API.TodoItems.ModifyTodoItem;
 
 public record ModifyTodoItemRequest(string Title, string Description, bool Status);
 public record ModifyTodoItemResponse(Guid Id);

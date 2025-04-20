@@ -1,5 +1,4 @@
-﻿
-namespace NexiusTestTodo.API.Services.ModifyTodoItem;
+﻿namespace NexiusTestTodo.API.TodoItems.ModifyTodoItem;
 
 public record ModifyTodoItemCommand(Guid Id, string Title, string Description) : IRequest<ModifyTodoItemResult>;
 public record ModifyTodoItemResult(Guid Id);

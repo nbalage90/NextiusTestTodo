@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NexiusTestTodo.Data\NexiusTestTodo.Data.csproj" />
+    <ProjectReference Include="..\NexiusTestTodo.Data\NexiusTestTodo.Repository.csproj" />
     <ProjectReference Include="..\NextiusTestTodo\NexiusTestTodo.API.csproj" />
   </ItemGroup>
 

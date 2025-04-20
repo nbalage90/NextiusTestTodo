@@ -1,7 +1,7 @@
-﻿using NexiusTestTodo.Data.Interfaces;
+﻿using NexiusTestTodo.Repository.Interfaces;
 using NexiusTestTodo.Domain;
 
-namespace NexiusTestTodo.Data.Repositories;
+namespace NexiusTestTodo.Repository.Repositories;
 
 public class FakeRepository : ITodoItemRepository
 {
@@ -14,16 +14,16 @@ public class FakeRepository : ITodoItemRepository
             new() { Id = Guid.NewGuid(), Title = "Test7", Description = "Test description", Status = false },
             new() { Id = Guid.NewGuid(), Title = "Test8", Description = "Test description", Status = false },
             new() { Id = Guid.NewGuid(), Title = "Test9", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test10", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test11", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test12", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test13", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test14", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test15", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test16", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test17", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test18", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test19", Description = "Test description", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test10", Description = "Test description", Status = true },
+            new() { Id = Guid.NewGuid(), Title = "Test11", Description = "Test description", Status = true },
+            new() { Id = Guid.NewGuid(), Title = "Test12", Description = "Test description", Status = true },
+            new() { Id = Guid.NewGuid(), Title = "Test13", Description = "Test description", Status = true },
+            new() { Id = Guid.NewGuid(), Title = "Test14", Description = "Test description", Status = true },
+            new() { Id = Guid.NewGuid(), Title = "Test15", Description = "Test description", Status = true },
+            new() { Id = Guid.NewGuid(), Title = "Test16", Description = "Test description", Status = true },
+            new() { Id = Guid.NewGuid(), Title = "Test17", Description = "Test description", Status = true },
+            new() { Id = Guid.NewGuid(), Title = "Test18", Description = "Test description", Status = true },
+            new() { Id = Guid.NewGuid(), Title = "Test19", Description = "Test description", Status = true },
             new() { Id = Guid.NewGuid(), Title = "Test20", Description = "Test description", Status = false },
             new() { Id = Guid.NewGuid(), Title = "Test21", Description = "Test description", Status = false },
             new() { Id = Guid.NewGuid(), Title = "Test22", Description = "Test description", Status = false },
@@ -36,7 +36,7 @@ public class FakeRepository : ITodoItemRepository
             new() { Id = Guid.NewGuid(), Title = "Test29", Description = "Test description", Status = false },
         ];
 
-    public async Task<IEnumerable<Todo>> GetAllAsync(CancellationToken cancellationToken, int? PageSize, int? PageNumber)
+    public async Task<IEnumerable<Todo>> GetAllAsync(CancellationToken cancellationToken, int? PageSize = null, int? PageNumber = null, bool? statusFilter = null)
     {
         IEnumerable<Todo> retVal;
 
@@ -47,6 +47,11 @@ public class FakeRepository : ITodoItemRepository
         else
         {
             retVal = todos;
+        }
+
+        if (statusFilter is not null)
+        {
+            retVal = retVal.Where(todo => todo.Status == statusFilter.Value);
         }
 
         return retVal;

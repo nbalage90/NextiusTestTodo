@@ -1,4 +1,4 @@
-﻿namespace NexiusTestTodo.API.Services.DeleteTodoItem;
+﻿namespace NexiusTestTodo.API.TodoItems.DeleteTodoItem;
 
 public record DeleteTodoItemResponse(bool IsSuccess);
 

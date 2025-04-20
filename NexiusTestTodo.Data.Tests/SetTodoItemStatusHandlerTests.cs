@@ -1,8 +1,8 @@
 ﻿using Moq;
-using NexiusTestTodo.API.Services.SetTodoItemStatus;
-using NexiusTestTodo.Data.Interfaces;
+using NexiusTestTodo.API.TodoItems.SetTodoItemStatus;
+using NexiusTestTodo.Repository.Interfaces;
 
-namespace NexiusTestTodo.Data.UnitTests;
+namespace NexiusTestTodo.API.UnitTests;
 public class SetTodoItemStatusHandlerTests
 {
     [Test]

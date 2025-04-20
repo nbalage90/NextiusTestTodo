@@ -1,6 +1,6 @@
-﻿namespace NexiusTestTodo.API.Services.GetAllTodoItems;
+﻿namespace NexiusTestTodo.API.TodoItems.GetAllTodoItems;
 
-public record GetAllTodoItemsRequest(int? PageSize, int PageNumber = 1);
+public record GetAllTodoItemsRequest(int? PageSize, int PageNumber = 1, bool? StatusFilter = null);
 public record GetAllTodoItemsResponse(IEnumerable<TodoItem> TodoItems);
 
 public class GetAllTodoItemsEndpoint : ICarterModule
