@@ -17,15 +17,19 @@ public class SetTodoItemStatusCommandValidator : AbstractValidator<SetTodoItemSt
     }
 }
 
-public class SetTodoItemStatusHandler(ITodoItemRepository repository) : IRequestHandler<SetTodoItemStatusCommand, SetTodoItemStatusResult>
+public class SetTodoItemStatusHandler(ITodoItemRepository repository, ILogger<SetTodoItemStatusHandler> logger) : IRequestHandler<SetTodoItemStatusCommand, SetTodoItemStatusResult>
 {
     public async Task<SetTodoItemStatusResult> Handle(SetTodoItemStatusCommand request, CancellationToken cancellationToken)
     {
+        logger.LogInformation("Recieved a request for setting an item to {Status} with id: {Id}.", request.Status, request.Id);
+
         var validator = new InputValidator<SetTodoItemStatusCommand, SetTodoItemStatusCommandValidator>();
         validator.Validate(request);
 
         // TODO: ha nincs elem ilyen id-val?
         var result = await repository.SetStatusAsync(request.Id, request.Status, cancellationToken);
+
+        logger.LogInformation("Id of modified object: {Id}", result);
 
         return new SetTodoItemStatusResult(result);
     }

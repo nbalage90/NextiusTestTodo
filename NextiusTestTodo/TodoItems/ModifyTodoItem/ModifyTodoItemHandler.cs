@@ -17,14 +17,18 @@ public class ModifyTodoItemCommandValidator : AbstractValidator<ModifyTodoItemCo
     }
 }
 
-public class ModifyTodoItemHandler(ITodoItemRepository repository) : IRequestHandler<ModifyTodoItemCommand, ModifyTodoItemResult>
+public class ModifyTodoItemHandler(ITodoItemRepository repository, ILogger<ModifyTodoItemHandler> logger) : IRequestHandler<ModifyTodoItemCommand, ModifyTodoItemResult>
 {
     public async Task<ModifyTodoItemResult> Handle(ModifyTodoItemCommand request, CancellationToken cancellationToken)
     {
+        logger.LogInformation("Recieved a request for modifying an item with id: {Id}.", request.Id);
+
         var validator = new InputValidator<ModifyTodoItemCommand, ModifyTodoItemCommandValidator>();
         validator.Validate(request);
 
         var result = await repository.ModifyAsync(request.Id, request.Title, request.Description, cancellationToken);
+
+        logger.LogInformation("Id of modified item: {Id}.", request.Id);
 
         return new ModifyTodoItemResult(result);
     }
