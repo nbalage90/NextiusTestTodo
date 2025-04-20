@@ -1,7 +1,6 @@
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using NexiusTestTodo.API.Exceptions.Handler;
-using NexiusTestTodo.API.TodoItems.GetAllTodoItems;
+using NexiusTestTodo.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +16,19 @@ builder.Services.AddMediatR(config =>
 });
 builder.Services.AddValidatorsFromAssembly(assembly);
 
-//builder.Services.AddScoped<ITodoItemRepository, FakeRepository>();
-builder.Services.AddSingleton<ITodoItemRepository, FakeRepository>(); // NOTE: just for testing purposes
+builder.Services.AddDbContext<NexiusTestTodoDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDatabaseConnectionString"))
+        .LogTo(Console.WriteLine, LogLevel.Information);
+
+    if (!builder.Environment.IsProduction())
+    {
+        options.EnableSensitiveDataLogging();
+        options.EnableDetailedErrors();
+    }
+});
+
+builder.Services.AddScoped<ITodoItemRepository, TodoRepository>();
 
 builder.Services.AddCarter();
 

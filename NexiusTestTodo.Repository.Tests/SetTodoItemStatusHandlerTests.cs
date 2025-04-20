@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
 using NexiusTestTodo.API.TodoItems.SetTodoItemStatus;
-using NexiusTestTodo.Repository.Interfaces;
+using NexiusTestTodo.Data.Interfaces;
 
 namespace NexiusTestTodo.API.UnitTests;
 public class SetTodoItemStatusHandlerTests

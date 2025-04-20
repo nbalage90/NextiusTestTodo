@@ -5,13 +5,11 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.API", "NexiusTestTodo.API\NexiusTestTodo.API.csproj", "{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.Repository", "NexiusTestTodo.Repository\NexiusTestTodo.Repository.csproj", "{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.Domain", "NexiusTestTodo.Domain\NexiusTestTodo.Domain.csproj", "{DCD0985A-FB7F-4E33-942D-CA10283DA89A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.API.UnitTests", "NexiusTestTodo.Repository.Tests\NexiusTestTodo.API.UnitTests.csproj", "{DCE73786-9490-406C-838F-F2562AB5FD28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexiusTestTodo.Data", "NexiusTestTodo.Data\NexiusTestTodo.Data.csproj", "{D0BA8D9C-99D9-421F-93E5-EEEBB29CE604}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.Data", "NexiusTestTodo.Data\NexiusTestTodo.Data.csproj", "{D0BA8D9C-99D9-421F-93E5-EEEBB29CE604}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DCD0985A-FB7F-4E33-942D-CA10283DA89A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DCD0985A-FB7F-4E33-942D-CA10283DA89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCD0985A-FB7F-4E33-942D-CA10283DA89A}.Release|Any CPU.ActiveCfg = Release|Any CPU

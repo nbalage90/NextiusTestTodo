@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NexiusTestTodo.API.TodoItems.CreateTodoItem;
-using NexiusTestTodo.Repository.Interfaces;
+using NexiusTestTodo.Data.Interfaces;
 using NexiusTestTodo.Domain;
 using Microsoft.Extensions.Logging;
 
