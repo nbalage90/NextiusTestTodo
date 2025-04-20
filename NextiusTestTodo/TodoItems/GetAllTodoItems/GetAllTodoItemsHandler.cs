@@ -3,7 +3,14 @@
 public record GetAllTodoItemsQuery(int? PageSize, int PageNumber = 1, bool? StatusFilter = null, string? DescriptionFilter = null) : IRequest<GetAllTodoItemsResult>;
 public record GetAllTodoItemsResult(IEnumerable<TodoItem> TodoItems);
 
-// TODO: PageSize, PageNumber validation (max 25)
+public class GetAllTodoItemQueryValidator : AbstractValidator<GetAllTodoItemsQuery>
+{
+    public GetAllTodoItemQueryValidator()
+    {
+        RuleFor(q => q.PageSize).GreaterThan(0).LessThan(25).WithMessage("Page size should be between 0 and 25");
+        RuleFor(q => q.PageNumber).GreaterThan(0).WithMessage("Page number should be a positive number");
+    }
+}
 
 public class GetAllTodoItemsHandler(ITodoItemRepository repository) : IRequestHandler<GetAllTodoItemsQuery, GetAllTodoItemsResult>
 {
