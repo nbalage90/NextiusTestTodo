@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -19,10 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NexiusTestTodo.Data\NexiusTestTodo.Repository.csproj" />
     <ProjectReference Include="..\NexiusTestTodo.Repository\NexiusTestTodo.Repository.csproj" />
-    <ProjectReference Include="..\NexiusTestTodo\NexiusTestTodo.API.csproj" />
-    <ProjectReference Include="..\NextiusTestTodo\NexiusTestTodo.API.csproj" />
+    <ProjectReference Include="..\NexiusTestTodo.API\NexiusTestTodo.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>
