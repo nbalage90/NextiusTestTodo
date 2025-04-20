@@ -24,19 +24,19 @@ public class FakeRepository : ITodoItemRepository
             new() { Id = Guid.NewGuid(), Title = "Test17", Description = "Test description", Status = true },
             new() { Id = Guid.NewGuid(), Title = "Test18", Description = "Test description", Status = true },
             new() { Id = Guid.NewGuid(), Title = "Test19", Description = "Test description", Status = true },
-            new() { Id = Guid.NewGuid(), Title = "Test20", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test21", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test22", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test23", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test24", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test25", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test26", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test27", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test28", Description = "Test description", Status = false },
-            new() { Id = Guid.NewGuid(), Title = "Test29", Description = "Test description", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test20", Description = "Lorem ipsum", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test21", Description = "Lorem ipsum", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test22", Description = "Lorem ipsum", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test23", Description = "Lorem ipsum", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test24", Description = "Lorem ipsum", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test25", Description = "Lorem ipsum", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test26", Description = "Lorem ipsum", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test27", Description = "Lorem ipsum", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test28", Description = "Lorem ipsum", Status = false },
+            new() { Id = Guid.NewGuid(), Title = "Test29", Description = "Lorem ipsum", Status = false },
         ];
 
-    public async Task<IEnumerable<Todo>> GetAllAsync(CancellationToken cancellationToken, int? PageSize = null, int? PageNumber = null, bool? statusFilter = null)
+    public async Task<IEnumerable<Todo>> GetAllAsync(CancellationToken cancellationToken, int? PageSize = null, int? PageNumber = null, bool? statusFilter = null, string? descriptionFilter = null)
     {
         IEnumerable<Todo> retVal;
 
@@ -52,6 +52,11 @@ public class FakeRepository : ITodoItemRepository
         if (statusFilter is not null)
         {
             retVal = retVal.Where(todo => todo.Status == statusFilter.Value);
+        }
+
+        if (descriptionFilter is not null)
+        {
+            retVal = retVal.Where(todo => todo.Description.ToLower().Contains(descriptionFilter.ToLower()));
         }
 
         return retVal;
