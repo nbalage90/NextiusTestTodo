@@ -21,6 +21,9 @@ public class DeleteTodoItemHandler(ITodoItemRepository repository) : IRequestHan
 {
     public async Task<DeleteTodoItemResult> Handle(DeleteTodoItemCommand request, CancellationToken cancellationToken)
     {
+        var validator = new InputValidator<DeleteTodoItemCommand, DeleteTodoItemCommandValidator>();
+        validator.Validate(request);
+
         var result = await repository.DeleteAsync(request.Id, cancellationToken);
 
         return new DeleteTodoItemResult(result);

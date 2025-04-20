@@ -21,6 +21,9 @@ public class SetTodoItemStatusHandler(ITodoItemRepository repository) : IRequest
 {
     public async Task<SetTodoItemStatusResult> Handle(SetTodoItemStatusCommand request, CancellationToken cancellationToken)
     {
+        var validator = new InputValidator<SetTodoItemStatusCommand, SetTodoItemStatusCommandValidator>();
+        validator.Validate(request);
+
         // TODO: ha nincs elem ilyen id-val?
         var result = await repository.SetStatusAsync(request.Id, request.Status, cancellationToken);
 

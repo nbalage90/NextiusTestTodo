@@ -16,6 +16,9 @@ public class GetAllTodoItemsHandler(ITodoItemRepository repository) : IRequestHa
 {
     public async Task<GetAllTodoItemsResult> Handle(GetAllTodoItemsQuery request, CancellationToken cancellationToken)
     {
+        var validator = new InputValidator<GetAllTodoItemsQuery, GetAllTodoItemQueryValidator>();
+        validator.Validate(request);
+
         var todoItemEntities = await repository.GetAllAsync(cancellationToken, request.PageSize, request.PageNumber, request.StatusFilter, request.DescriptionFilter);
         var todoItems = todoItemEntities.Adapt<IEnumerable<TodoItem>>();
 

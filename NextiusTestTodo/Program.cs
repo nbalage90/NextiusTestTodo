@@ -1,3 +1,8 @@
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
+using NexiusTestTodo.API.Exceptions.Handler;
+using NexiusTestTodo.API.TodoItems.GetAllTodoItems;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,11 +15,14 @@ builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssembly(assembly);
 });
+builder.Services.AddValidatorsFromAssembly(assembly);
 
 //builder.Services.AddScoped<ITodoItemRepository, FakeRepository>();
 builder.Services.AddSingleton<ITodoItemRepository, FakeRepository>(); // NOTE: just for testing purposes
 
 builder.Services.AddCarter();
+
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 var app = builder.Build();
 
@@ -28,5 +36,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapCarter();
+
+app.UseExceptionHandler(options =>
+{
+
+});
 
 app.Run();

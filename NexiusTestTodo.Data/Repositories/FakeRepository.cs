@@ -74,7 +74,7 @@ public class FakeRepository : ITodoItemRepository
         var todoItem = todos.SingleOrDefault(item => item.Id == id);
         if (todoItem is null)
         {
-            throw new ArgumentException();
+            throw new ArgumentOutOfRangeException();
         }
 
         todoItem.Status = status;
@@ -88,7 +88,7 @@ public class FakeRepository : ITodoItemRepository
 
         if (item is null)
         {
-            throw new ArgumentException();
+            throw new ArgumentOutOfRangeException();
         }
 
         item.Title = title is not null ? title : item.Title;
@@ -102,7 +102,7 @@ public class FakeRepository : ITodoItemRepository
 
         if (item is null)
         {
-            throw new ArgumentException();
+            throw new ArgumentOutOfRangeException();
         }
 
         todos.Remove(item);

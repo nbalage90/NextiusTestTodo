@@ -16,6 +16,9 @@ public class CreateTodoItemHandler(ITodoItemRepository repository) : IRequestHan
 {
     public async Task<CreateTodoItemResult> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
     {
+        var validator = new InputValidator<CreateTodoItemCommand, CreateTodoItemCommandValidator>();
+        validator.Validate(request);
+
         TodoItem newTodoItemDto = new()
         {
             Title = request.Title,

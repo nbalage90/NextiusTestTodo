@@ -6,3 +6,4 @@ global using NexiusTestTodo.Domain;
 global using NexiusTestTodo.Repository.Repositories;
 global using NexiusTestTodo.Repository.Interfaces;
 global using FluentValidation;
+global using NexiusTestTodo.API.Validation;
