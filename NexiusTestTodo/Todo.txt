@@ -1,8 +1,6 @@
-Exception handling
-Logging
 Repositories
-CosmosDB
-Paging
-Filtering
+Database
+Unit tests
+Integration tests
 
 Mappa neveket ellenõrizni, hogy egyeznek-e a solution/projekt nevekkel

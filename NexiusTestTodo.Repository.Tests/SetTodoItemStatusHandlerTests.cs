@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Microsoft.Extensions.Logging;
+using Moq;
 using NexiusTestTodo.API.TodoItems.SetTodoItemStatus;
 using NexiusTestTodo.Repository.Interfaces;
 
@@ -15,7 +16,9 @@ public class SetTodoItemStatusHandlerTests
             .Returns(Task.FromResult(expectedGuidId));
         var command = new SetTodoItemStatusCommand(expectedGuidId, true);
 
-        var handler = new SetTodoItemStatusHandler(repositoryMock.Object);
+        var loggerMock = new Mock<ILogger<SetTodoItemStatusHandler>>();
+
+        var handler = new SetTodoItemStatusHandler(repositoryMock.Object, loggerMock.Object);
 
         var result = await handler.Handle(command, CancellationToken.None);
 

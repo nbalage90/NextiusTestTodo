@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.API", "NextiusTestTodo\NexiusTestTodo.API.csproj", "{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.API", "NexiusTestTodo\NexiusTestTodo.API.csproj", "{2745FD14-FCAA-4A10-ABE1-4F60B7E45602}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.Repository", "NexiusTestTodo.Data\NexiusTestTodo.Repository.csproj", "{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.Repository", "NexiusTestTodo.Repository\NexiusTestTodo.Repository.csproj", "{7C6A2C2D-DBF2-41FE-AA0B-0A5DF5A630A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.Domain", "NexiusTestTodo.Domain\NexiusTestTodo.Domain.csproj", "{DCD0985A-FB7F-4E33-942D-CA10283DA89A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.API.UnitTests", "NexiusTestTodo.Data.Tests\NexiusTestTodo.API.UnitTests.csproj", "{DCE73786-9490-406C-838F-F2562AB5FD28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.API.UnitTests", "NexiusTestTodo.Repository.Tests\NexiusTestTodo.API.UnitTests.csproj", "{DCE73786-9490-406C-838F-F2562AB5FD28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
