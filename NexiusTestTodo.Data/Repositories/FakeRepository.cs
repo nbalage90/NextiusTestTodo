@@ -72,11 +72,30 @@ public class FakeRepository : ITodoItemRepository
         return id;
     }
 
-    public async Task<Guid> ModifyItemAsync(Guid id, string title, string description, CancellationToken cancellationToken)
+    public async Task<Guid> ModifyAsync(Guid id, string title, string description, CancellationToken cancellationToken)
     {
         var item = todos.Single(todo => todo.Id == id);
+
+        if (item is null)
+        {
+            throw new ArgumentException();
+        }
+
         item.Title = title is not null ? title : item.Title;
         item.Description = description is not null ? description : item.Description;
         return id;
+    }
+
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var item = todos.SingleOrDefault(todo => todo.Id == id);
+
+        if (item is null)
+        {
+            throw new ArgumentException();
+        }
+
+        todos.Remove(item);
+        return true;
     }
 }

@@ -7,7 +7,7 @@ public class ModifyTodoItemEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapPatch("todoItems/{id}", async (Guid id, ModifyTodoItemRequest request, ISender sender) =>
+        app.MapPatch("/todoItems/{id}", async (Guid id, ModifyTodoItemRequest request, ISender sender) =>
         {
             var command = new ModifyTodoItemCommand(id, request.Title, request.Description);
 

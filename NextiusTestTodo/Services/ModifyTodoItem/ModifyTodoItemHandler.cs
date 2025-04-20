@@ -8,7 +8,7 @@ public class ModifyTodoItemHandler(ITodoItemRepository repository) : IRequestHan
 {
     public async Task<ModifyTodoItemResult> Handle(ModifyTodoItemCommand request, CancellationToken cancellationToken)
     {
-        var result = await repository.ModifyItemAsync(request.Id, request.Title, request.Description, cancellationToken);
+        var result = await repository.ModifyAsync(request.Id, request.Title, request.Description, cancellationToken);
 
         return new ModifyTodoItemResult(result);
     }
