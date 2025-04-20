@@ -12,6 +12,8 @@ public class DeleteTodoItemEndpoint : ICarterModule
 
             var result = await sender.Send(command);
 
+            var response = result.Adapt<DeleteTodoItemResponse>();
+
             return Results.Ok(result);
         });
     }
