@@ -18,16 +18,16 @@ public class GetAllTodoItemsHandlerTests
         _repositoryMock
             .Setup(repo => repo.GetAllAsync(It.IsAny<CancellationToken>(), It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<bool?>(), It.IsAny<string?>()))
             .Returns(Task.FromResult<IEnumerable<Todo>>([
-                new Todo { Id = Guid.NewGuid(), Title = "Title", Description = "Description", Status = false },
-                new Todo { Id = Guid.NewGuid(), Title = "Title", Description = "Description", Status = false },
-                new Todo { Id = Guid.NewGuid(), Title = "Title", Description = "Description", Status = false },
-                new Todo { Id = Guid.NewGuid(), Title = "Title", Description = "Description", Status = false },
-                new Todo { Id = Guid.NewGuid(), Title = "Title", Description = "Description", Status = false },
-                new Todo { Id = Guid.NewGuid(), Title = "Title", Description = "Description", Status = false },
-                new Todo { Id = Guid.NewGuid(), Title = "Title", Description = "Description", Status = false },
-                new Todo { Id = Guid.NewGuid(), Title = "Title", Description = "Description", Status = false },
-                new Todo { Id = Guid.NewGuid(), Title = "Title", Description = "Description", Status = false },
-                new Todo { Id = Guid.NewGuid(), Title = "Title", Description = "Description", Status = false },
+                new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
+                new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
+                new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
+                new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
+                new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
+                new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
+                new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
+                new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
+                new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
+                new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
                 ]));
         _loggerMock = new Mock<ILogger<GetAllTodoItemsHandler>>();
     }

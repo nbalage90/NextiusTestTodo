@@ -1,6 +1,6 @@
 ﻿namespace NexiusTestTodo.API.TodoItems.CreateTodoItem;
 
-public record CreateTodoItemRequest(string Title, string Description, bool Status);
+public record CreateTodoItemRequest(string Description, bool Status);
 public record CreateTodoItemResponse(Guid Id);
 
 public class CreateTodoItemEndpoint : ICarterModule

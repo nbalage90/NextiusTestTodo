@@ -55,7 +55,7 @@ public class TodoRepository(NexiusTestTodoDbContext context) : ITodoItemReposito
         return id;
     }
 
-    public async Task<Guid> ModifyAsync(Guid id, string title, string description, CancellationToken cancellationToken)
+    public async Task<Guid> ModifyAsync(Guid id, string description, CancellationToken cancellationToken)
     {
         var item = await context.Todos.SingleAsync(todo => todo.Id == id, cancellationToken);
 
@@ -64,7 +64,6 @@ public class TodoRepository(NexiusTestTodoDbContext context) : ITodoItemReposito
             throw new ArgumentOutOfRangeException();
         }
 
-        item.Title = title is not null ? title : item.Title;
         item.Description = description is not null ? description : item.Description;
 
         await context.SaveChangesAsync(cancellationToken);

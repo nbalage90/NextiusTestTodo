@@ -92,7 +92,6 @@ public class GetAllTodoItemsTests
         // Insert a new item for testcase
         var newItemId = await _repository.CreateAsync(new Todo
         {
-            Title = "Integration test title",
             Description = "Integration test description",
             Status = false
         }, CancellationToken.None);
@@ -116,7 +115,6 @@ public class GetAllTodoItemsTests
         // Insert a new item for testcase
         var newItemId = await _repository.CreateAsync(new Todo
         {
-            Title = "Integration test title",
             Description = "Integration test description",
             Status = false
         }, CancellationToken.None);
@@ -140,7 +138,6 @@ public class GetAllTodoItemsTests
         // Insert a new item for testcase
         var newItemId = await _repository.CreateAsync(new Todo
         {
-            Title = "Integration test title",
             Description = "Integration test description",
             Status = false
         }, CancellationToken.None);
@@ -162,7 +159,6 @@ public class GetAllTodoItemsTests
         {
             var newItemId = await _repository.CreateAsync(new Todo
             {
-                Title = "Integration test title",
                 Description = "Integration test description",
                 Status = false
             }, CancellationToken.None);

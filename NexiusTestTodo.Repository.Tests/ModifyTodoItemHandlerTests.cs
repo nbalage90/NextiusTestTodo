@@ -16,11 +16,11 @@ public class ModifyTodoItemHandlerTests
         var expectedGuidId = Guid.NewGuid();
         var repositoryMock = new Mock<ITodoItemRepository>();
         repositoryMock
-            .Setup(repo => repo.ModifyAsync(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(repo => repo.ModifyAsync(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(expectedGuidId));
         var loggerMock = new Mock<ILogger<ModifyTodoItemHandler>>();
 
-        var command = new ModifyTodoItemCommand(Guid.NewGuid(), "", "");
+        var command = new ModifyTodoItemCommand(Guid.NewGuid(), "");
 
         var handler = new ModifyTodoItemHandler(repositoryMock.Object, loggerMock.Object);
 
@@ -35,11 +35,11 @@ public class ModifyTodoItemHandlerTests
         var expectedGuidId = Guid.NewGuid();
         var repositoryMock = new Mock<ITodoItemRepository>();
         repositoryMock
-            .Setup(repo => repo.ModifyAsync(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(repo => repo.ModifyAsync(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(expectedGuidId));
         var loggerMock = new Mock<ILogger<ModifyTodoItemHandler>>();
 
-        var command = new ModifyTodoItemCommand(Guid.Empty, "Title", "Test description");
+        var command = new ModifyTodoItemCommand(Guid.Empty, "Test description");
 
         var handler = new ModifyTodoItemHandler(repositoryMock.Object, loggerMock.Object);
 

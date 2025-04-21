@@ -1,6 +1,6 @@
 ﻿namespace NexiusTestTodo.API.TodoItems.ModifyTodoItem;
 
-public record ModifyTodoItemCommand(Guid Id, string Title, string Description) : IRequest<ModifyTodoItemResult>;
+public record ModifyTodoItemCommand(Guid Id, string Description) : IRequest<ModifyTodoItemResult>;
 public record ModifyTodoItemResult(Guid Id);
 
 public class ModifyTodoItemCommandValidator : AbstractValidator<ModifyTodoItemCommand>
@@ -26,7 +26,7 @@ public class ModifyTodoItemHandler(ITodoItemRepository repository, ILogger<Modif
         var validator = new InputValidator<ModifyTodoItemCommand, ModifyTodoItemCommandValidator>();
         validator.Validate(request);
 
-        var result = await repository.ModifyAsync(request.Id, request.Title, request.Description, cancellationToken);
+        var result = await repository.ModifyAsync(request.Id, request.Description, cancellationToken);
 
         logger.LogInformation("Id of modified item: {Id}.", request.Id);
 
