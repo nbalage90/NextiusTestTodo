@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using NexiusTestTodo.API.TodoItems.CreateTodoItem;
+﻿namespace NexiusTestTodo.API.TodoItems.GetAllTodoItems;
 
-namespace NexiusTestTodo.API.TodoItems.GetAllTodoItems;
-
-public record GetAllTodoItemsQuery(int? PageSize, int PageNumber = 1, bool? StatusFilter = null, string? DescriptionFilter = null) : IRequest<GetAllTodoItemsResult>;
+public record GetAllTodoItemsQuery(int? PageSize = null, int PageNumber = 1, bool? StatusFilter = null, string? DescriptionFilter = null) : IRequest<GetAllTodoItemsResult>;
 public record GetAllTodoItemsResult(IEnumerable<TodoItem> TodoItems);
 
 public class GetAllTodoItemQueryValidator : AbstractValidator<GetAllTodoItemsQuery>

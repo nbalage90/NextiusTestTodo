@@ -3,13 +3,14 @@ using NexiusTestTodo.API.TodoItems.CreateTodoItem;
 using NexiusTestTodo.Data.Interfaces;
 using NexiusTestTodo.Domain;
 using Microsoft.Extensions.Logging;
+using FluentValidation;
 
 namespace NexiusTestTodo.API.UnitTests;
 
 public class CreateTodoItemHandlerTests
 {
     [Test]
-    public async Task Handle_SaveNewItem_WithNoError()
+    public async Task Handle_CreateNewItem_WithNoError()
     {
         var expectedGuidId = Guid.NewGuid();
         var repositoryMock = new Mock<ITodoItemRepository>();
@@ -24,47 +25,40 @@ public class CreateTodoItemHandlerTests
 
         var result = await handler.Handle(command, CancellationToken.None);
 
-        Assert.That(expectedGuidId, Is.EqualTo(result.Id));
+        Assert.That(result.Id, Is.EqualTo(expectedGuidId));
     }
 
-    //[Test]
-    //public async Task GetAllAsync_ReturnsAll_WithPaging()
-    //{
-    //    var repository = RepositoryFactory.CreateMock();
-    //    var pageSize = 25;
-    //    var pageNumber = 1;
+    [Test]
+    public async Task Handle_CreateNewItemWithNoTitle_ValidationError()
+    {
+        var expectedGuidId = Guid.NewGuid();
+        var repositoryMock = new Mock<ITodoItemRepository>();
+        repositoryMock
+            .Setup(repo => repo.CreateAsync(It.IsAny<Todo>(), It.IsAny<CancellationToken>()))
+            .Returns(Task.FromResult(expectedGuidId));
+        var loggerMock = new Mock<ILogger<CreateTodoItemHandler>>();
 
-    //    var todos = await repository.GetAllAsync(pageSize, pageNumber);
+        var command = new CreateTodoItemCommand("", "Test description", false);
 
-    //    Assert.That(todos, Is.Not.Null);
-    //    Assert.That(todos.ToList(), Has.Count.EqualTo(25));
-    //}
+        var handler = new CreateTodoItemHandler(repositoryMock.Object, loggerMock.Object);
 
-    //[Test]
-    //public async Task GetAllAsync_ReturnsAll_WithPagingMax25Items()
-    //{
-    //    var repository = RepositoryFactory.CreateMock();
-    //    var pageSize = 30;
-    //    var pageNumber = 1;
+        Assert.ThrowsAsync<ValidationException>(() => handler.Handle(command, CancellationToken.None));
+    }
 
-    //    var todos = await repository.GetAllAsync(pageSize, pageNumber);
+    [Test]
+    public async Task Handle_CreateNewItemWithNoDescription_ValidationError()
+    {
+        var expectedGuidId = Guid.NewGuid();
+        var repositoryMock = new Mock<ITodoItemRepository>();
+        repositoryMock
+            .Setup(repo => repo.CreateAsync(It.IsAny<Todo>(), It.IsAny<CancellationToken>()))
+            .Returns(Task.FromResult(expectedGuidId));
+        var loggerMock = new Mock<ILogger<CreateTodoItemHandler>>();
 
-    //    Assert.That(todos, Is.Not.Null);
-    //    Assert.That(todos.ToList(), Has.Count.EqualTo(25));
-    //}
+        var command = new CreateTodoItemCommand("Test title", "", false);
 
-    //[Test]
-    //public async Task CreateAsync_ReturnsNewGuid()
-    //{
-    //    var repository = RepositoryFactory.CreateMock();
-    //    var newItem = new Todo
-    //    {
-    //        Title = "Test item",
-    //        Description = "Test description"
-    //    };
+        var handler = new CreateTodoItemHandler(repositoryMock.Object, loggerMock.Object);
 
-    //    var id = await repository.CreateAsync(newItem);
-
-    //    Assert.That(id, Is.Not.Empty);
-    //}
+        Assert.ThrowsAsync<ValidationException>(() => handler.Handle(command, CancellationToken.None));
+    }
 }
