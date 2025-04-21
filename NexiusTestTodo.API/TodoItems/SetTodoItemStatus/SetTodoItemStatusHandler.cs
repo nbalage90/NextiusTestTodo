@@ -26,7 +26,6 @@ public class SetTodoItemStatusHandler(ITodoItemRepository repository, ILogger<Se
         var validator = new InputValidator<SetTodoItemStatusCommand, SetTodoItemStatusCommandValidator>();
         validator.Validate(request);
 
-        // TODO: ha nincs elem ilyen id-val?
         var result = await repository.SetStatusAsync(request.Id, request.Status, cancellationToken);
 
         logger.LogInformation("Id of modified object: {Id}", result);
