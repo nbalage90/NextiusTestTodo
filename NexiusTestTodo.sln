@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.Data", "Nexi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexiusTestTodo.IntegrationTest", "NexiusTestTodo.IntegrationTest\NexiusTestTodo.IntegrationTest.csproj", "{B3871DC2-726B-4100-A726-DEB92D0D9573}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{87319F5F-C1B9-4A3A-A9CD-BE4A6C4FA1D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DCE73786-9490-406C-838F-F2562AB5FD28} = {87319F5F-C1B9-4A3A-A9CD-BE4A6C4FA1D2}
+		{B3871DC2-726B-4100-A726-DEB92D0D9573} = {87319F5F-C1B9-4A3A-A9CD-BE4A6C4FA1D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51DBA4E4-D121-44CF-80FF-83D46A069877}
