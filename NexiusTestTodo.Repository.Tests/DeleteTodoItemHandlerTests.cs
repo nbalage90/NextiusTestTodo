@@ -4,7 +4,7 @@ using Moq;
 using NexiusTestTodo.API.TodoItems.DeleteTodoItem;
 using NexiusTestTodo.Data.Interfaces;
 
-namespace NexiusTestTodo.API.UnitTests;
+namespace NexiusTestTodo.API.UnitTest;
 
 public class DeleteTodoItemHandlerTests
 {

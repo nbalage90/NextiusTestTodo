@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.API", "Nexiu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.Domain", "NexiusTestTodo.Domain\NexiusTestTodo.Domain.csproj", "{DCD0985A-FB7F-4E33-942D-CA10283DA89A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.API.UnitTests", "NexiusTestTodo.Repository.Tests\NexiusTestTodo.API.UnitTests.csproj", "{DCE73786-9490-406C-838F-F2562AB5FD28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.API.UnitTest", "NexiusTestTodo.Repository.Tests\NexiusTestTodo.API.UnitTest.csproj", "{DCE73786-9490-406C-838F-F2562AB5FD28}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexiusTestTodo.Data", "NexiusTestTodo.Data\NexiusTestTodo.Data.csproj", "{D0BA8D9C-99D9-421F-93E5-EEEBB29CE604}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexiusTestTodo.IntegrationTest", "NexiusTestTodo.IntegrationTest\NexiusTestTodo.IntegrationTest.csproj", "{B3871DC2-726B-4100-A726-DEB92D0D9573}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D0BA8D9C-99D9-421F-93E5-EEEBB29CE604}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0BA8D9C-99D9-421F-93E5-EEEBB29CE604}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0BA8D9C-99D9-421F-93E5-EEEBB29CE604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3871DC2-726B-4100-A726-DEB92D0D9573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3871DC2-726B-4100-A726-DEB92D0D9573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3871DC2-726B-4100-A726-DEB92D0D9573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3871DC2-726B-4100-A726-DEB92D0D9573}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

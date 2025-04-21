@@ -5,7 +5,7 @@ using NexiusTestTodo.Domain;
 using Microsoft.Extensions.Logging;
 using FluentValidation;
 
-namespace NexiusTestTodo.API.UnitTests;
+namespace NexiusTestTodo.API.UnitTest;
 
 public class CreateTodoItemHandlerTests
 {

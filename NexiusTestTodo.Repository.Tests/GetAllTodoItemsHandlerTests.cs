@@ -5,7 +5,7 @@ using NexiusTestTodo.API.TodoItems.GetAllTodoItems;
 using NexiusTestTodo.Data.Interfaces;
 using NexiusTestTodo.Domain;
 
-namespace NexiusTestTodo.API.UnitTests;
+namespace NexiusTestTodo.API.UnitTest;
 
 public class GetAllTodoItemsHandlerTests
 {

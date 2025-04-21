@@ -6,7 +6,7 @@ using NexiusTestTodo.API.TodoItems.ModifyTodoItem;
 using NexiusTestTodo.Data.Interfaces;
 using NexiusTestTodo.Domain;
 
-namespace NexiusTestTodo.API.UnitTests;
+namespace NexiusTestTodo.API.UnitTest;
 
 public class ModifyTodoItemHandlerTests
 {
