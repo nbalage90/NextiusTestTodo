@@ -9,7 +9,7 @@ public class GetAllTodoItemQueryValidator : AbstractValidator<GetAllTodoItemsQue
 {
     public GetAllTodoItemQueryValidator()
     {
-        RuleFor(q => q.PageSize).GreaterThan(0).LessThan(25).WithMessage("Page size should be between 0 and 25");
+        RuleFor(q => q.PageSize).GreaterThan(0).LessThanOrEqualTo(25).WithMessage("Page size should be between 0 and 25");
         RuleFor(q => q.PageNumber).GreaterThan(0).WithMessage("Page number should be a positive number");
     }
 }
