@@ -11,7 +11,7 @@ public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCo
     }
 }
 
-public class CreateTodoItemHandler(ITodoItemRepository repository, ILogger<CreateTodoItemHandler> logger) : IRequestHandler<CreateTodoItemCommand, CreateTodoItemResult>
+public class CreateTodoItemCommandHandler(ITodoItemRepository repository, ILogger<CreateTodoItemCommandHandler> logger) : IRequestHandler<CreateTodoItemCommand, CreateTodoItemResult>
 {
     public async Task<CreateTodoItemResult> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
     {
@@ -20,13 +20,7 @@ public class CreateTodoItemHandler(ITodoItemRepository repository, ILogger<Creat
         var validator = new InputValidator<CreateTodoItemCommand, CreateTodoItemCommandValidator>();
         validator.Validate(request);
 
-        TodoItem newTodoItemDto = new()
-        {
-            Description = request.Description,
-            Status = request.Status,
-        };
-
-        var newTodoItemEntity = newTodoItemDto.Adapt<Todo>();
+        var newTodoItemEntity = request.Adapt<Todo>();
 
         var result = await repository.CreateAsync(newTodoItemEntity, cancellationToken);
 

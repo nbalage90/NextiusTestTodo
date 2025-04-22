@@ -13,13 +13,13 @@ public class SetTodoItemStatusHandlerTests
         var expectedGuidId = Guid.NewGuid();
         var repositoryMock = new Mock<ITodoItemRepository>();
         repositoryMock
-            .Setup(repo => repo.SetStatusAsync(It.IsAny<Guid>(), It.IsAny<bool>(), It.IsAny<CancellationToken>()))
+            .Setup(repo => repo.SetStatusToAsync(It.IsAny<Guid>(), It.IsAny<bool>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(expectedGuidId));
         var command = new SetTodoItemStatusCommand(expectedGuidId, true);
 
-        var loggerMock = new Mock<ILogger<SetTodoItemStatusHandler>>();
+        var loggerMock = new Mock<ILogger<SetTodoItemStatusCommandHandler>>();
 
-        var handler = new SetTodoItemStatusHandler(repositoryMock.Object, loggerMock.Object);
+        var handler = new SetTodoItemStatusCommandHandler(repositoryMock.Object, loggerMock.Object);
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -32,13 +32,13 @@ public class SetTodoItemStatusHandlerTests
         var expectedGuidId = Guid.NewGuid();
         var repositoryMock = new Mock<ITodoItemRepository>();
         repositoryMock
-            .Setup(repo => repo.SetStatusAsync(It.IsAny<Guid>(), It.IsAny<bool>(), It.IsAny<CancellationToken>()))
+            .Setup(repo => repo.SetStatusToAsync(It.IsAny<Guid>(), It.IsAny<bool>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(expectedGuidId));
-        var loggerMock = new Mock<ILogger<SetTodoItemStatusHandler>>();
+        var loggerMock = new Mock<ILogger<SetTodoItemStatusCommandHandler>>();
 
         var command = new SetTodoItemStatusCommand(Guid.Empty, true);
 
-        var handler = new SetTodoItemStatusHandler(repositoryMock.Object, loggerMock.Object);
+        var handler = new SetTodoItemStatusCommandHandler(repositoryMock.Object, loggerMock.Object);
 
         Assert.ThrowsAsync<ValidationException>(() => handler.Handle(command, CancellationToken.None));
     }

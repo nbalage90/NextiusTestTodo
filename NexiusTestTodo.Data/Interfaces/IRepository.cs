@@ -1,12 +1,13 @@
-﻿using NexiusTestTodo.Domain;
+﻿using NexiusTestTodo.Data.Models;
+using NexiusTestTodo.Domain;
 
 namespace NexiusTestTodo.Data.Interfaces;
 
 public interface ITodoItemRepository
 {
-    Task<IEnumerable<Todo>> GetAllAsync(CancellationToken cancellationToken, int? pageSize = null, int? pageNumber = null, bool? statusFilter = null, string? descriptionFilter = null);
+    Task<IEnumerable<Todo>> GetAllAsync(GetAllItemsRequest request, CancellationToken cancellationToken);
     Task<Guid> CreateAsync(Todo entity, CancellationToken cancellationToken);
-    Task<Guid> SetStatusAsync(Guid id, bool status, CancellationToken cancellationToken);
-    Task<Guid> ModifyAsync(Guid id, string description, CancellationToken cancellationToken);
+    Task<Guid> SetStatusToAsync(Guid id, bool status, CancellationToken cancellationToken);
+    Task<Guid> ModifyDescriptionToAsync(Guid id, string description, CancellationToken cancellationToken);
     Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken);
 }

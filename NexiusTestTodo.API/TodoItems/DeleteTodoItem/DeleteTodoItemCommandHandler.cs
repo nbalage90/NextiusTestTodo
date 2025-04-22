@@ -17,7 +17,7 @@ public class DeleteTodoItemCommandValidator : AbstractValidator<DeleteTodoItemCo
     }
 }
 
-public class DeleteTodoItemHandler(ITodoItemRepository repository, ILogger<DeleteTodoItemHandler> logger) : IRequestHandler<DeleteTodoItemCommand, DeleteTodoItemResult>
+public class DeleteTodoItemCommandHandler(ITodoItemRepository repository, ILogger<DeleteTodoItemCommandHandler> logger) : IRequestHandler<DeleteTodoItemCommand, DeleteTodoItemResult>
 {
     public async Task<DeleteTodoItemResult> Handle(DeleteTodoItemCommand request, CancellationToken cancellationToken)
     {
@@ -29,6 +29,7 @@ public class DeleteTodoItemHandler(ITodoItemRepository repository, ILogger<Delet
         var result = await repository.DeleteAsync(request.Id, cancellationToken);
 
         logger.LogInformation("Id of created object: {Id}", result);
+
         return new DeleteTodoItemResult(result);
     }
 }

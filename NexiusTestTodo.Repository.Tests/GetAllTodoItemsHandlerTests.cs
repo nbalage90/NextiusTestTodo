@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NexiusTestTodo.API.TodoItems.GetAllTodoItems;
 using NexiusTestTodo.Data.Interfaces;
+using NexiusTestTodo.Data.Models;
 using NexiusTestTodo.Domain;
 
 namespace NexiusTestTodo.API.UnitTest;
@@ -10,13 +11,13 @@ namespace NexiusTestTodo.API.UnitTest;
 public class GetAllTodoItemsHandlerTests
 {
     private Mock<ITodoItemRepository> _repositoryMock = new();
-    private Mock<ILogger<GetAllTodoItemsHandler>> _loggerMock = new();
+    private Mock<ILogger<GetAllTodoItemsQueryHandler>> _loggerMock = new();
 
     [SetUp]
     public void Setup()
     {
         _repositoryMock
-            .Setup(repo => repo.GetAllAsync(It.IsAny<CancellationToken>(), It.IsAny<int?>(), It.IsAny<int?>(), It.IsAny<bool?>(), It.IsAny<string?>()))
+            .Setup(repo => repo.GetAllAsync(It.IsAny<GetAllItemsRequest>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult<IEnumerable<Todo>>([
                 new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
                 new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
@@ -29,7 +30,7 @@ public class GetAllTodoItemsHandlerTests
                 new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
                 new Todo { Id = Guid.NewGuid(), Description = "Description", Status = false },
                 ]));
-        _loggerMock = new Mock<ILogger<GetAllTodoItemsHandler>>();
+        _loggerMock = new Mock<ILogger<GetAllTodoItemsQueryHandler>>();
     }
 
     [Test]
@@ -37,7 +38,7 @@ public class GetAllTodoItemsHandlerTests
     {
         var command = new GetAllTodoItemsQuery();
 
-        var handler = new GetAllTodoItemsHandler(_repositoryMock.Object, _loggerMock.Object);
+        var handler = new GetAllTodoItemsQueryHandler(_repositoryMock.Object, _loggerMock.Object);
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -50,7 +51,7 @@ public class GetAllTodoItemsHandlerTests
     {
         var command = new GetAllTodoItemsQuery(PageSize: 26, PageNumber: 1);
 
-        var handler = new GetAllTodoItemsHandler(_repositoryMock.Object, _loggerMock.Object);
+        var handler = new GetAllTodoItemsQueryHandler(_repositoryMock.Object, _loggerMock.Object);
 
         Assert.ThrowsAsync<ValidationException>(() => handler.Handle(command, CancellationToken.None));
     }
@@ -60,7 +61,7 @@ public class GetAllTodoItemsHandlerTests
     {
         var command = new GetAllTodoItemsQuery(PageSize: -1, PageNumber: 1);
 
-        var handler = new GetAllTodoItemsHandler(_repositoryMock.Object, _loggerMock.Object);
+        var handler = new GetAllTodoItemsQueryHandler(_repositoryMock.Object, _loggerMock.Object);
 
         Assert.ThrowsAsync<ValidationException>(() => handler.Handle(command, CancellationToken.None));
     }
@@ -70,7 +71,7 @@ public class GetAllTodoItemsHandlerTests
     {
         var command = new GetAllTodoItemsQuery(PageSize: 10, PageNumber: -1);
 
-        var handler = new GetAllTodoItemsHandler(_repositoryMock.Object, _loggerMock.Object);
+        var handler = new GetAllTodoItemsQueryHandler(_repositoryMock.Object, _loggerMock.Object);
 
         Assert.ThrowsAsync<ValidationException>(() => handler.Handle(command, CancellationToken.None));
     }

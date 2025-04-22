@@ -15,11 +15,11 @@ public class DeleteTodoItemHandlerTests
         repositoryMock
             .Setup(repo => repo.DeleteAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(true));
-        var loggerMock = new Mock<ILogger<DeleteTodoItemHandler>>();
+        var loggerMock = new Mock<ILogger<DeleteTodoItemCommandHandler>>();
 
         var command = new DeleteTodoItemCommand(Guid.NewGuid());
 
-        var handler = new DeleteTodoItemHandler(repositoryMock.Object, loggerMock.Object);
+        var handler = new DeleteTodoItemCommandHandler(repositoryMock.Object, loggerMock.Object);
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -33,11 +33,11 @@ public class DeleteTodoItemHandlerTests
         repositoryMock
             .Setup(repo => repo.DeleteAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(true));
-        var loggerMock = new Mock<ILogger<DeleteTodoItemHandler>>();
+        var loggerMock = new Mock<ILogger<DeleteTodoItemCommandHandler>>();
 
         var command = new DeleteTodoItemCommand(Guid.Empty);
 
-        var handler = new DeleteTodoItemHandler(repositoryMock.Object, loggerMock.Object);
+        var handler = new DeleteTodoItemCommandHandler(repositoryMock.Object, loggerMock.Object);
 
         Assert.ThrowsAsync<ValidationException>(() => handler.Handle(command, CancellationToken.None));
     }

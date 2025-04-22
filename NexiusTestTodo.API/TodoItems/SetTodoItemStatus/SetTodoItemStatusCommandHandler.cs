@@ -17,7 +17,7 @@ public class SetTodoItemStatusCommandValidator : AbstractValidator<SetTodoItemSt
     }
 }
 
-public class SetTodoItemStatusHandler(ITodoItemRepository repository, ILogger<SetTodoItemStatusHandler> logger) : IRequestHandler<SetTodoItemStatusCommand, SetTodoItemStatusResult>
+public class SetTodoItemStatusCommandHandler(ITodoItemRepository repository, ILogger<SetTodoItemStatusCommandHandler> logger) : IRequestHandler<SetTodoItemStatusCommand, SetTodoItemStatusResult>
 {
     public async Task<SetTodoItemStatusResult> Handle(SetTodoItemStatusCommand request, CancellationToken cancellationToken)
     {
@@ -26,7 +26,7 @@ public class SetTodoItemStatusHandler(ITodoItemRepository repository, ILogger<Se
         var validator = new InputValidator<SetTodoItemStatusCommand, SetTodoItemStatusCommandValidator>();
         validator.Validate(request);
 
-        var result = await repository.SetStatusAsync(request.Id, request.Status, cancellationToken);
+        var result = await repository.SetStatusToAsync(request.Id, request.Status, cancellationToken);
 
         logger.LogInformation("Id of modified object: {Id}", result);
 
