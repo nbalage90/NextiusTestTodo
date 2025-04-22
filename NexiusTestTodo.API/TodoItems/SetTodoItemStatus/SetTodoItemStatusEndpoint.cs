@@ -13,7 +13,9 @@ public class SetTodoItemStatusEndpoint : ICarterModule
             
             var result = await sender.Send(command);
 
-            return Results.Ok(result);
+            var response = result.Adapt<SetTodoItemStatusResponse>();
+
+            return Results.Ok(response);
         });
     }
 }

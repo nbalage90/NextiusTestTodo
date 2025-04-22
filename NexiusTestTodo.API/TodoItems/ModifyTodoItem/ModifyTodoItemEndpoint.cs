@@ -13,7 +13,9 @@ public class ModifyTodoItemEndpoint : ICarterModule
 
             var result = await sender.Send(command);
 
-            return Results.Ok(result);
+            var response = result.Adapt<ModifyTodoItemResponse>();
+
+            return Results.Ok(response);
         });
     }
 }

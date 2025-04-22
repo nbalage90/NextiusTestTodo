@@ -17,11 +17,11 @@ public class CreateTodoItemHandlerTests
         repositoryMock
             .Setup(repo => repo.CreateAsync(It.IsAny<Todo>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(expectedGuidId));
-        var loggerMock = new Mock<ILogger<CreateTodoItemHandler>>();
+        var loggerMock = new Mock<ILogger<CreateTodoItemCommandHandler>>();
 
         var command = new CreateTodoItemCommand("Test description", false);
         
-        var handler = new CreateTodoItemHandler(repositoryMock.Object, loggerMock.Object);
+        var handler = new CreateTodoItemCommandHandler(repositoryMock.Object, loggerMock.Object);
 
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -36,11 +36,11 @@ public class CreateTodoItemHandlerTests
         repositoryMock
             .Setup(repo => repo.CreateAsync(It.IsAny<Todo>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(expectedGuidId));
-        var loggerMock = new Mock<ILogger<CreateTodoItemHandler>>();
+        var loggerMock = new Mock<ILogger<CreateTodoItemCommandHandler>>();
 
         var command = new CreateTodoItemCommand("", false);
 
-        var handler = new CreateTodoItemHandler(repositoryMock.Object, loggerMock.Object);
+        var handler = new CreateTodoItemCommandHandler(repositoryMock.Object, loggerMock.Object);
 
         Assert.ThrowsAsync<ValidationException>(() => handler.Handle(command, CancellationToken.None));
     }

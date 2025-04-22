@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using NexiusTestTodo.API.TodoItems.GetAllTodoItems;
 using NexiusTestTodo.Data;
 using NexiusTestTodo.Data.Interfaces;
+using NexiusTestTodo.Data.Models;
 using NexiusTestTodo.Data.Repositories;
 using NexiusTestTodo.Domain;
 
@@ -11,7 +12,7 @@ namespace NexiusTestTodo.IntegrationTest;
 public class GetAllTodoItemsTests
 {
     private readonly ITodoItemRepository _repository;
-    private readonly ILogger<GetAllTodoItemsHandler> _logger;
+    private readonly ILogger<GetAllTodoItemsQueryHandler> _logger;
 
     public GetAllTodoItemsTests()
     {
@@ -23,14 +24,14 @@ public class GetAllTodoItemsTests
                                                .AddConsole());
 
         _repository = new TodoRepository(new NexiusTestTodoDbContext(options));
-        _logger = loggerFactory.CreateLogger<GetAllTodoItemsHandler>();
+        _logger = loggerFactory.CreateLogger<GetAllTodoItemsQueryHandler>();
     }
 
     [Test]
     public async Task Handle_GetAllItem_ShouldReturnList()
     {
         var command = new GetAllTodoItemsQuery();
-        var handler = new GetAllTodoItemsHandler(_repository, _logger);
+        var handler = new GetAllTodoItemsQueryHandler(_repository, _logger);
 
         var newItemId = await InsertOneItemIfDbIsEmptyAsync();
 
@@ -48,7 +49,7 @@ public class GetAllTodoItemsTests
     public async Task Handle_GetAllItemWithPaging_ShouldReturnList()
     {
         var command = new GetAllTodoItemsQuery(10, 1);
-        var handler = new GetAllTodoItemsHandler(_repository, _logger);
+        var handler = new GetAllTodoItemsQueryHandler(_repository, _logger);
 
         var newItemId = await InsertOneItemIfDbIsEmptyAsync();
 
@@ -67,7 +68,7 @@ public class GetAllTodoItemsTests
     public async Task Handle_GetAllItemWithFilteringOnStatus_ShouldReturnList()
     {
         var command = new GetAllTodoItemsQuery(StatusFilter: false);
-        var handler = new GetAllTodoItemsHandler(_repository, _logger);
+        var handler = new GetAllTodoItemsQueryHandler(_repository, _logger);
 
         var newItemId = await InsertOneItemIfDbIsEmptyAsync();
 
@@ -87,7 +88,7 @@ public class GetAllTodoItemsTests
     public async Task Handle_GetAllItemWithFilteringOnDescription_ShouldReturnList()
     {
         var command = new GetAllTodoItemsQuery(DescriptionFilter: "Integration");
-        var handler = new GetAllTodoItemsHandler(_repository, _logger);
+        var handler = new GetAllTodoItemsQueryHandler(_repository, _logger);
 
         // Insert a new item for testcase
         var newItemId = await _repository.CreateAsync(new Todo
@@ -110,7 +111,7 @@ public class GetAllTodoItemsTests
     public async Task Handle_GetAllItemWithPagingAndFiltering_ShouldReturnAnItem()
     {
         var command = new GetAllTodoItemsQuery(10, 1, StatusFilter: false, DescriptionFilter: "Integration");
-        var handler = new GetAllTodoItemsHandler(_repository, _logger);
+        var handler = new GetAllTodoItemsQueryHandler(_repository, _logger);
 
         // Insert a new item for testcase
         var newItemId = await _repository.CreateAsync(new Todo
@@ -133,7 +134,7 @@ public class GetAllTodoItemsTests
     public async Task Handle_GetAllItemWithPagingAndFiltering_ShouldNotReturnAnyItems()
     {
         var command = new GetAllTodoItemsQuery(10, 1, StatusFilter: true, DescriptionFilter: "Integration");
-        var handler = new GetAllTodoItemsHandler(_repository, _logger);
+        var handler = new GetAllTodoItemsQueryHandler(_repository, _logger);
 
         // Insert a new item for testcase
         var newItemId = await _repository.CreateAsync(new Todo
@@ -154,7 +155,7 @@ public class GetAllTodoItemsTests
 
     private async Task<Guid> InsertOneItemIfDbIsEmptyAsync()
     {
-        var items = (await _repository.GetAllAsync(CancellationToken.None)).ToList();
+        var items = (await _repository.GetAllAsync(new GetAllItemsRequest(), CancellationToken.None)).ToList();
         if (items is null || items.Count == 0)
         {
             var newItemId = await _repository.CreateAsync(new Todo
